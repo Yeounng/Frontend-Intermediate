@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github](https://github.com/Yeounng/Frontend-Mentor-Junior/tree/password-gen)
+- Live Site URL: [Netlify](https://bespoke-paletas-4c12fe.netlify.app/)
 
 ## My process
 
