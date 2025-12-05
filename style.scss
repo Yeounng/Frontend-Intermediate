@@ -1,0 +1,216 @@
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url(./assets/fonts/JetBrainsMono-VariableFont_wght.ttf);
+}
+
+$grey-950: #08070b;
+$grey-900: #14131b;
+$grey-850: #18171f;
+$grey-800: #24232c;
+$grey-700: #54535b;
+$grey-600: #817d92;
+$grey-200: #e6e5ea;
+
+$green-200: #a4ffaf;
+$yellow-300: #f8cd65;
+$orange-400: #fb7c58;
+$red-500: #f64a4a;
+
+$breakpoints: (
+  desktop-wide: 1440px,
+  desktop: 1200px,
+  tablet: 768px,
+  mobile: 376px,
+);
+
+@mixin responsive($points) {
+  @media screen and (max-width: map-get($breakpoints, $points)) {
+    @content;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+body {
+  background-color: $grey-950;
+  color: white;
+  font-family: "JetBrainsMono";
+  font-size: 16px;
+}
+
+.password-gen-app {
+  width: 100vw;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-gen-title {
+  font-size: 16px;
+  color: $grey-600;
+}
+
+.p-gen-flex {
+  width: 100vw;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include responsive(mobile) {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+  }
+}
+
+.p-gen-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: $grey-800;
+}
+
+.btn-copy {
+  width: 30px;
+  height: 30px;
+  background-color: $grey-800;
+}
+.btn-copy img {
+  width: 100%;
+}
+
+.p-gen-main {
+  width: 100%;
+  padding: 15px 20px 15px 20px;
+  margin-bottom: 15px;
+  background-color: $grey-800;
+}
+
+.slider-txt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-txt > label {
+  line-height: 22px;
+}
+
+.length {
+  color: $green-200;
+  font-size: 22px;
+}
+
+.slider-box {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+}
+
+input#slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #a4ffaf 0% 8%, #14131b 8% 100%);
+  align-self: flex-end; //center 시 위쪽에 붙는데 이유를 잘 모르겠음. baseline이 되게 위쪽이던데 그거랑 관련있을려나?
+}
+// input#slider::-webkit-slider-runnable-track {
+// }
+
+// input#slider::-moz-range-track {
+// }
+
+input#slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+input#slider::-moz-range-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+
+.options > li {
+  margin-bottom: 10px;
+}
+
+.p-gen-strength {
+  display: flex;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  gap: 5px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $grey-900;
+}
+
+.level-wrap {
+  display: flex;
+  gap: 5px;
+  background-color: $grey-900;
+}
+
+.strength-level {
+  width: 8px;
+  height: 20px;
+  border: 1px solid white;
+}
+.strength-level.active {
+  background-color: $yellow-300;
+}
+
+button.generate {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: $green-200;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button.generate img {
+  margin-left: 10px;
+}
+
+button.generate:hover {
+  border: 1px solid $green-200;
+  background-color: $grey-950;
+  color: white;
+}

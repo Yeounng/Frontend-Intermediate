@@ -1,29 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./normalizer.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"
+    ></script>
+    <script defer src="./app.js"></script>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Password generator app</title>
-</head>
-<body>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | Password generator app</title>
+  </head>
+  <body>
+    <section class="password-gen-app">
+      <div class="p-gen-flex">
+        <h1 class="p-gen-title">Password Generator</h1>
+        <div class="p-gen-result">
+          <span id="dochigogo">Select at least one option!</span
+          ><button
+            class="btn-copy"
+            type="button"
+            data-clipboard-target="#dochigogo"
+            data-clipboard-action="copy"
+          >
+            <img src="./assets/images/icon-copy.svg" alt="" />
+          </button>
+        </div>
+        <div class="p-gen-main">
+          <div class="slider-txt">
+            <label for="slider">Character Length</label>
+            <span class="length" data-pw-length="passwordLength">10</span>
+          </div>
+          <div class="slider-box">
+            <input
+              type="range"
+              min="8"
+              max="32"
+              value="10"
+              step="1"
+              id="slider"
+            />
+          </div>
 
-  Password Generator
-
-  P4$5W0rD!
-
-  Character Length
-
-  Include Uppercase Letters
-  Include Lowercase Letters
-  Include Numbers
-  Include Symbols
-
-  Strength
-
-  Generate
-
-</body>
+          <ul class="options">
+            <li>
+              <input type="checkbox" name="uppercase" id="uppercase" />
+              <label for="uppercase">Include Uppercase Letters</label>
+            </li>
+            <li>
+              <input type="checkbox" name="lowercase" id="lowercase" />
+              <label for="lowercase">Include Lowercase Letters</label>
+            </li>
+            <li>
+              <input type="checkbox" name="numbers" id="numbers" />
+              <label for="numbers">Include Numbers</label>
+            </li>
+            <li>
+              <input type="checkbox" name="symbols" id="symbols" />
+              <label for="symbols">Include Symbols</label>
+            </li>
+          </ul>
+          <div class="p-gen-strength">
+            <span class="strength-text">Strength</span>
+            <div class="level-wrap">
+              <span class="strength">MEDIUM</span>
+              <div class="strength-level"></div>
+              <div class="strength-level"></div>
+              <div class="strength-level"></div>
+              <div class="strength-level"></div>
+            </div>
+          </div>
+          <button type="button" class="generate">
+            GENERATE <img src="/assets/images/icon-arrow-right.svg" alt="" />
+          </button>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
