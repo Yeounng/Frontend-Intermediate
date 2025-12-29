@@ -271,7 +271,7 @@ function incorrectIcon(clickedItem) {
   let isChecked = modeSwitch.checked;
 
   clickedItem.classList.add("incorrect");
-  let cMark = `<img class="status-icon" src="./assets/images/icon-correct.svg" alt=""/>`;
+  let cMark = `<img class="status-icon" src="./assets/images/icon-incorrect.svg" alt=""/>`;
   if (isChecked) {
     let cMarkDark = `<img class="status-icon theme-dark" src="./assets/images/icon-incorrect.svg" alt=""/>`;
     clickedItem.insertAdjacentHTML("beforeend", cMarkDark);
