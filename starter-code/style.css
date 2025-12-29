@@ -1,0 +1,451 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Rubik-Variable";
+  src: url(./assets/fonts/Rubik-VariableFont_wght.ttf);
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rubik-Variable";
+  src: url(./assets/fonts/Rubik-Italic-VariableFont_wght.ttf);
+  font-style: italic;
+}
+/*Colors*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rubik-Variable";
+  font-size: 16px;
+  /* 1. 베이스 배경색 (기존 색상에서 어두운 톤을 선택) */
+  background-color: #3b4d66;
+  /* 2. Multiple Radial Gradients 적용 */
+  background-image: radial-gradient(circle at 10% 20%, rgba(167, 41, 245, 0.3) 0%, rgba(167, 41, 245, 0) 70%), radial-gradient(circle at 90% 80%, rgba(204, 94, 30, 0.3) 0%, rgba(255, 126, 53, 0) 60%), radial-gradient(circle at 30% 90%, rgba(68, 93, 129, 0.3) 0%, rgba(59, 77, 102, 0) 50%);
+  /* 3. 배경 이미지 반복 방지 및 고정 */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* 스크롤해도 버블 위치 고정 */
+}
+
+body.theme-dark {
+  background-color: #1a1f26;
+  background-image: radial-gradient(circle at 15% 15%, rgba(167, 41, 245, 0.08) 0%, rgba(167, 41, 245, 0) 60%), radial-gradient(circle at 85% 80%, rgba(255, 126, 53, 0.05) 0%, rgba(255, 126, 53, 0) 50%), radial-gradient(circle at 50% 90%, rgba(59, 77, 102, 0.1) 0%, rgba(59, 77, 102, 0) 70%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+  padding: 0;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+section.quiz-app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1440px;
+  max-height: 960px;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./assets/images/pattern-background-desktop-light.svg);
+  background-color: #f4f6fa;
+  border-radius: 15px;
+  color: #2d3949;
+  transition: 0.3s;
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 80vw;
+    height: 80vh;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+@media screen and (max-width: 376px) {
+  .container {
+    padding: 15px;
+  }
+}
+
+.container.theme-dark {
+  background-image: url(./assets/images/pattern-background-desktop-dark.svg);
+  background-color: #313e51;
+  color: #f4f6fa;
+}
+
+.upper-area {
+  display: flex;
+  width: 1157px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 1200px) {
+  .upper-area {
+    width: 100%;
+  }
+}
+
+.selected-subject {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.selected-subject img {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  border-radius: 15px;
+  background-color: var(--icon-bg);
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+  width: 48px;
+  height: 24px;
+  margin-top: 5px;
+  border: 1px solid grey;
+  border-radius: 12px;
+  background-color: #a729f5;
+  transition: 0.2s;
+}
+
+input[type=checkbox]:checked {
+  background-color: #2d3949;
+  transition: 0.2s;
+}
+
+input[type=checkbox]::after {
+  content: "";
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: white;
+  transition: 0.2s;
+}
+
+input[type=checkbox]:checked::after {
+  left: 95%;
+  transform: translate(-100%, -50%);
+}
+
+input[type=checkbox]:disabled::after {
+  left: 5%;
+  transform: translateY(-50%);
+}
+
+.content {
+  display: flex;
+  width: 1157px;
+  height: 464px;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 1200px) {
+  .content {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.text-area {
+  position: relative;
+  width: 50%;
+  align-self: normal;
+}
+@media screen and (max-width: 768px) {
+  .text-area {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 376px) {
+  .text-area {
+    padding-right: 15px;
+  }
+}
+
+.progression-bar {
+  transition: 0.3s;
+}
+
+.progression-bar.active {
+  position: absolute;
+  bottom: 55px;
+  width: 100%;
+  height: 16px;
+  background-color: white;
+  border-radius: 10px;
+}
+@media screen and (max-width: 768px) {
+  .progression-bar.active {
+    left: -5px;
+    bottom: 40px;
+  }
+}
+@media screen and (max-width: 376px) {
+  .progression-bar.active {
+    left: -5px;
+    bottom: 25px;
+    margin-bottom: 15px;
+  }
+}
+
+.progression-bar.active.theme-dark {
+  background-color: #3b4d66;
+}
+
+.progression-bar.active::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  display: block;
+  width: var(--progress, 0%);
+  height: 10px;
+  background-color: #a729f5;
+  border-radius: 10px;
+  transition: width 0.2s ease;
+}
+
+.app-title {
+  font-size: 48px;
+  text-align: left;
+}
+@media screen and (max-width: 768px) {
+  .app-title {
+    font-size: 40px;
+  }
+}
+@media screen and (max-width: 376px) {
+  .app-title {
+    font-size: 32px;
+  }
+}
+
+.app-title span {
+  font-weight: 300;
+}
+
+.app-title strong {
+  font-weight: 600;
+}
+
+.app-text {
+  font-style: italic;
+  font-weight: 100;
+}
+
+.answer-area {
+  width: 50%;
+}
+@media screen and (max-width: 768px) {
+  .answer-area {
+    width: 100%;
+  }
+}
+
+.answer-list > li {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  background-color: white;
+  cursor: pointer;
+  overflow: hidden;
+}
+.answer-list > li:nth-of-type(1) > img {
+  background-color: #fff5ed;
+}
+.answer-list > li:nth-of-type(2) > img {
+  background-color: #e0fdef;
+}
+.answer-list > li:nth-of-type(3) > img {
+  background-color: #ebf0ff;
+}
+.answer-list > li:nth-of-type(4) > img {
+  background-color: #f6e7ff;
+}
+
+.answer-list.theme-dark > li {
+  background-color: #3b4d66;
+}
+
+.answer-list > li:hover {
+  box-shadow: inset 0 0 0 3px purple;
+}
+
+.answer-list > li > img {
+  display: block;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.answer-list > li > span {
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.answer-order {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #f4f6fa;
+  justify-content: center;
+  align-items: center;
+}
+
+.answer-order > span {
+  font-size: 22px;
+  font-weight: 500;
+  color: #313e51;
+}
+
+.answer-list > li.clicked {
+  box-shadow: inset 0 0 0 3px #a729f5;
+}
+
+.answer-list > li.clicked > .answer-order {
+  background-color: #a729f5;
+}
+
+.answer-list > li.clicked > .answer-order > span {
+  color: #f4f6fa;
+}
+
+.answer-list > li.clicked:hover {
+  box-shadow: inset 0 0 0 3px #a729f5;
+}
+
+.answer-list > li.clicked.correct {
+  box-shadow: inset 0 0 0 3px #2fd887;
+}
+
+.answer-list > li.clicked.correct > .answer-order {
+  background-color: #2fd887;
+}
+
+.answer-list > li.clicked.correct > .status-icon {
+  margin-left: auto;
+  background-color: white;
+}
+
+.answer-list > li.incorrect {
+  box-shadow: inset 0 0 0 3px #ee5454;
+}
+
+.answer-list > li.incorrect > .answer-order {
+  background-color: #ee5454;
+}
+
+.answer-list > li.incorrect > .answer-order > span {
+  color: #f4f6fa;
+}
+
+.answer-list > li.incorrect > .status-icon {
+  margin-left: auto;
+  background-color: white;
+}
+
+.answer-list > .error-msg {
+  display: flex;
+  width: 100%;
+  margin-top: 15px;
+  justify-content: center;
+  align-items: center;
+  color: #ee5454;
+}
+
+.error-msg img {
+  margin-right: 10px;
+}
+
+button[type=submit] {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+button[type=submit].active {
+  width: 100%;
+  height: 70px;
+  border-radius: 15px;
+  background-color: #a729f5;
+  font-size: 24px;
+  color: white;
+  opacity: 1;
+}
+
+.ending-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  background-color: white;
+}
+
+.ending-screen.theme-dark {
+  background-color: #2d3949;
+}
+
+.ending-screen > strong {
+  font-size: 160px;
+  font-weight: 500;
+}/*# sourceMappingURL=style.css.map */

@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Frontend quiz app</title>
-</head>
-<body>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./normalizer.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./app.js"></script>
 
-  <!-- Quiz menu start -->
-
-  Welcome to the Frontend Quiz!
-  Pick a subject to get started.
-
-  HTML
-  CSS
-  JavaScript
-  Accessibility
-
-  <!-- Quiz menu end -->
-
-  <!-- Quiz question start -->
-
-  Question <!-- number --> of 10
-
-  A
-  B
-  C
-  D
-
-  Submit answer
-
-  <!-- Quiz question end -->
-
-  <!-- Quiz completed start -->
-
-  Quiz completed
-  You scored...
-
-  <!-- score --> out of 10
-
-  <!-- Quiz completed end -->
-
-</body>
+    <title>Frontend Mentor | Frontend quiz app</title>
+  </head>
+  <body>
+    <section class="quiz-app">
+      <div class="container">
+        <div class="upper-area">
+          <div class="selected-subject"></div>
+          <div class="theme-toggle">
+            <img
+              class="icon-sun"
+              src="./assets/images/icon-sun-dark.svg"
+              alt=""
+            />
+            <label for="mode-switch">
+              <input type="checkbox" name="mode-switch" id="mode-switch" />
+            </label>
+            <img
+              class="icon-moon"
+              src="./assets/images/icon-moon-dark.svg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="content">
+          <div class="text-area">
+            <h1 class="app-title">
+              <span>Welcome to the</span><br /><strong>Frontend Quiz!</strong>
+            </h1>
+            <p class="app-text">Pick a subject to get started.</p>
+            <div class="progression-bar"></div>
+          </div>
+          <div class="answer-area">
+            <ul class="answer-list"></ul>
+            <button class="submit" type="submit"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
