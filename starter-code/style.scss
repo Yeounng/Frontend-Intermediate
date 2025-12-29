@@ -166,7 +166,7 @@ section.quiz-app {
     border-radius: 0;
   }
   @include responsive(mobile) {
-    padding: 15px;
+    padding: 10px;
   }
 }
 
@@ -254,15 +254,20 @@ input[type="checkbox"]:disabled::after {
   display: flex;
   width: 1157px;
   height: 464px;
+  gap: 30px;
   justify-content: center;
   align-items: center;
   @include responsive(desktop) {
     width: 100%;
+    max-height: fit-content;
   }
   @include responsive(tablet) {
     flex-direction: column;
     width: 100%;
     height: 100%;
+  }
+  @include responsive(mobile) {
+    padding: 0;
   }
 }
 
@@ -417,7 +422,12 @@ input[type="checkbox"]:disabled::after {
 .answer-list > li.clicked.correct > .status-icon {
   margin-left: auto;
   background-color: white;
+  transition: 0.3s;
 }
+.answer-list > li.clicked.correct > .status-icon.theme-dark {
+  background-color: $blue-850;
+}
+
 //Incorrect State
 .answer-list > li.incorrect {
   box-shadow: inset 0 0 0 3px $red-500;
@@ -431,6 +441,9 @@ input[type="checkbox"]:disabled::after {
 .answer-list > li.incorrect > .status-icon {
   margin-left: auto;
   background-color: white;
+}
+.answer-list > li.incorrect > .status-icon.theme-dark {
+  background-color: $blue-850;
 }
 //error-msg
 .answer-list > .error-msg {

@@ -235,8 +235,14 @@ function completeDP(score, currentSubject, questionIndex) {
   };
 
   const modeSwitch = document.getElementById("mode-switch");
+  let isChecked = modeSwitch.checked;
+  const edScreen = document.querySelector(".ending-screen");
+
+  if (isChecked) {
+    edScreen.classList.add("theme-dark");
+  }
+
   modeSwitch.onclick = (e) => {
-    const edScreen = document.querySelector(".ending-screen");
     let isChecked = modeSwitch.checked;
     if (!isChecked) {
       edScreen.classList.remove("theme-dark");
@@ -247,19 +253,31 @@ function completeDP(score, currentSubject, questionIndex) {
 }
 
 function correctIcon(clickedItem) {
+  const modeSwitch = document.getElementById("mode-switch");
+  let isChecked = modeSwitch.checked;
+
   clickedItem.classList.add("correct");
-  const correctMark = document.createElement("img");
-  correctMark.classList.add("status-icon");
-  correctMark.src = "./assets/images/icon-correct.svg";
-  clickedItem.appendChild(correctMark);
+  let cMark = `<img class="status-icon" src="./assets/images/icon-correct.svg" alt=""/>`;
+  if (isChecked) {
+    let cMarkDark = `<img class="status-icon theme-dark" src="./assets/images/icon-correct.svg" alt=""/>`;
+    clickedItem.insertAdjacentHTML("beforeend", cMarkDark);
+  } else if (!isChecked) {
+    clickedItem.insertAdjacentHTML("beforeend", cMark);
+  }
 }
 
 function incorrectIcon(clickedItem) {
+  const modeSwitch = document.getElementById("mode-switch");
+  let isChecked = modeSwitch.checked;
+
   clickedItem.classList.add("incorrect");
-  const correctMark = document.createElement("img");
-  correctMark.classList.add("status-icon");
-  correctMark.src = "./assets/images/icon-incorrect.svg";
-  clickedItem.appendChild(correctMark);
+  let cMark = `<img class="status-icon" src="./assets/images/icon-correct.svg" alt=""/>`;
+  if (isChecked) {
+    let cMarkDark = `<img class="status-icon theme-dark" src="./assets/images/icon-incorrect.svg" alt=""/>`;
+    clickedItem.insertAdjacentHTML("beforeend", cMarkDark);
+  } else if (!isChecked) {
+    clickedItem.insertAdjacentHTML("beforeend", cMark);
+  }
 }
 
 function buttonRender() {

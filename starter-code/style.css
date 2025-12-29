@@ -91,7 +91,7 @@ section.quiz-app {
 }
 @media screen and (max-width: 376px) {
   .container {
-    padding: 15px;
+    padding: 10px;
   }
 }
 
@@ -182,12 +182,15 @@ input[type=checkbox]:disabled::after {
   display: flex;
   width: 1157px;
   height: 464px;
+  gap: 30px;
   justify-content: center;
   align-items: center;
 }
 @media screen and (max-width: 1200px) {
   .content {
     width: 100%;
+    max-height: -moz-fit-content;
+    max-height: fit-content;
   }
 }
 @media screen and (max-width: 768px) {
@@ -195,6 +198,11 @@ input[type=checkbox]:disabled::after {
     flex-direction: column;
     width: 100%;
     height: 100%;
+  }
+}
+@media screen and (max-width: 376px) {
+  .content {
+    padding: 0;
   }
 }
 
@@ -382,6 +390,11 @@ input[type=checkbox]:disabled::after {
 .answer-list > li.clicked.correct > .status-icon {
   margin-left: auto;
   background-color: white;
+  transition: 0.3s;
+}
+
+.answer-list > li.clicked.correct > .status-icon.theme-dark {
+  background-color: #3b4d66;
 }
 
 .answer-list > li.incorrect {
@@ -399,6 +412,10 @@ input[type=checkbox]:disabled::after {
 .answer-list > li.incorrect > .status-icon {
   margin-left: auto;
   background-color: white;
+}
+
+.answer-list > li.incorrect > .status-icon.theme-dark {
+  background-color: #3b4d66;
 }
 
 .answer-list > .error-msg {
