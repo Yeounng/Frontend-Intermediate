@@ -181,12 +181,12 @@ function answerChecker(answer, currentSubject, questionIndex) {
   const errorMsg = document.querySelector(".error-msg");
 
   if (!clickedItem) {
-    // const nothing = document.createElement("div");
-    // const nothingHtml = `<img src="./assets/images/icon-incorrect.svg"><span>Please Select an Answer</span>`;
-    // nothing.innerHTML = nothingHtml;
-    // list.appendChild(nothing);
-    // 기존 코드 -> 아래 코드로 변경. 추가할 HTML을 미리 작성해두고 insertAdjacentHTML로 위치를 지정해서 HTML을 그대로 넣어버림. 값이 고정이라면 좋다
     if (!errorMsg) {
+      // const nothing = document.createElement("div");
+      // const nothingHtml = `<img src="./assets/images/icon-incorrect.svg"><span>Please Select an Answer</span>`;
+      // nothing.innerHTML = nothingHtml;
+      // list.appendChild(nothing);
+      // 기존 코드 -> 아래 코드로 변경. 추가할 HTML을 미리 작성해두고 insertAdjacentHTML로 위치를 지정해서 HTML을 그대로 넣어버림. 값이 고정이라면 좋다
       const nothingHtml = `<div class="error-msg"><img src="./assets/images/icon-incorrect.svg"><span>Please Select an Answer</span></div>`;
       list.insertAdjacentHTML("beforeend", nothingHtml);
     }
