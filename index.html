@@ -1,44 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | E-commerce product page</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <script defer src="/main.js"></script>
+    <title>Frontend Mentor | E-commerce product page</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-
-  Collections
-  Men
-  Women
-  About
-  Contact
-
-  Sneaker Company
-
-  Fall Limited Edition Sneakers
-
-  These low-profile sneakers are your perfect casual wear companion. Featuring a 
-  durable rubber outer sole, they’ll withstand everything the weather can offer.
-
-  $125.00
-  50%
-  $250.00
-
-  0
-  Add to cart
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="lightbox">
+      <div class="wrapper">
+        <button class="lightbox-close"><img src="/images/icon-close.svg" alt="close icon" /></button>
+        <div class="product-showcase">
+          <div class="product-swiper">
+            <div class="swiper-wrapper">
+              <div class="slider-item"><img src="/images/image-product-1.jpg" alt="" /></div>
+              <div class="slider-item"><img src="/images/image-product-2.jpg" alt="" /></div>
+              <div class="slider-item"><img src="/images/image-product-3.jpg" alt="" /></div>
+              <div class="slider-item"><img src="/images/image-product-4.jpg" alt="" /></div>
+            </div>
+            <div class="swiper swiper-left"><img src="/images/icon-previous.svg" alt="previous icon" /></div>
+            <div class="swiper swiper-right"><img src="/images/icon-next.svg" alt="next icon" /></div>
+          </div>
+          <div class="product-gallery desktop-component">
+            <ul class="gallery-img">
+              <li><img src="/images/image-product-1-thumbnail.jpg" alt="" /></li>
+              <li><img src="/images/image-product-2-thumbnail.jpg" alt="" /></li>
+              <li><img src="/images/image-product-3-thumbnail.jpg" alt="" /></li>
+              <li><img src="/images/image-product-4-thumbnail.jpg" alt="" /></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header>
+      <nav aria-label="upper navigation bar">
+        <button class="mobile-menu" aria-expanded="false" aria-controls="gnb-menu">
+          <img src="/images/icon-menu.svg" alt="mobile menu icon" />
+        </button>
+        <div class="logo">
+          <a href="#"><img src="/images/logo.svg" alt="logo" /></a>
+        </div>
+        <ul id="gnb-menu" class="gnb-menu">
+          <li class="menu-item"><a href="">Collections</a></li>
+          <li class="menu-item"><a href="">Men</a></li>
+          <li class="menu-item"><a href="">Women</a></li>
+          <li class="menu-item"><a href="">About</a></li>
+          <li class="menu-item"><a href="">Contract</a></li>
+        </ul>
+        <div class="user-area">
+          <div class="user-cart">
+            <button type="button" class="nav-add-cart" aria-expanded="false" aria-controls="cart-popup">
+              <img src="/images/icon-cart.svg" alt="my cart icon" />
+            </button>
+            <div id="cart-popup" class="cart-popup">
+              <div class="popup-upper"><span>Cart</span></div>
+              <div class="cart-empty" aria-hidden="true"><span class="empty">Your Cart is Empty</span></div>
+              <div class="popup-main">
+                <div class="cart-item-thumnail">
+                  <img src="/images/image-product-1-thumbnail.jpg" alt="in cart item thumbnail" />
+                </div>
+                <div class="cart-item-detail">
+                  <span class="item-name"></span>
+                  <span class="item-total" data-final-price="final-price" data-product-quantity="quantity"></span>
+                </div>
+                <button type="button" class="discard-item">
+                  <img src="/images/icon-delete.svg" alt="item delete icon" />
+                </button>
+              </div>
+              <button type="submit" class="checkout">Checkout</button>
+            </div>
+          </div>
+          <div class="user-profile">
+            <a href="#"><img src="/images/image-avatar.png" alt="user profile image" /></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main id="product-page" class="product-page">
+      <div class="container">
+        <div class="product-showcase">
+          <div class="product-swiper">
+            <div class="swiper-wrapper">
+              <div class="slider-item"><img src="/images/image-product-1.jpg" alt="" /></div>
+              <div class="slider-item"><img src="/images/image-product-2.jpg" alt="" /></div>
+              <div class="slider-item"><img src="/images/image-product-3.jpg" alt="" /></div>
+              <div class="slider-item"><img src="/images/image-product-4.jpg" alt="" /></div>
+            </div>
+            <div class="swiper swiper-left"><img src="/images/icon-previous.svg" alt="previous icon" /></div>
+            <div class="swiper swiper-right"><img src="/images/icon-next.svg" alt="next icon" /></div>
+          </div>
+          <div class="product-gallery desktop-component">
+            <ul class="gallery-img">
+              <li><img src="/images/image-product-1-thumbnail.jpg" alt="" /></li>
+              <li><img src="/images/image-product-2-thumbnail.jpg" alt="" /></li>
+              <li><img src="/images/image-product-3-thumbnail.jpg" alt="" /></li>
+              <li><img src="/images/image-product-4-thumbnail.jpg" alt="" /></li>
+            </ul>
+          </div>
+        </div>
+        <div class="content-wrapper">
+          <div class="product-content">
+            <span class="product-brand">SNEAKER COMPANY</span>
+            <h1 class="product-title" data-product-name="Fall Limited Edition Sneakers">Fall Limited Edition Sneakers</h1>
+            <p class="product-desciption">
+              These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole,
+              they’ll withstand everything the weather can offer.
+            </p>
+          </div>
+          <div class="wrapper" style="width: 100%">
+            <div class="product-price">
+              <h2 class="product-final-price" id="final-price" data-final-price="125.00">$125.00</h2>
+              <div class="product-discount" data-product-discount="0.50"><span>50%</span></div>
+              <span class="product-original-price" data-product-original-price="125.00">$250.00</span>
+            </div>
+            <div class="product-purchase">
+              <div class="product-quantity">
+                <button type="button" class="subtract"><img src="/images/icon-minus.svg" alt="" /></button>
+                <span id="quantity" class="quantity">0</span>
+                <button type="button" class="add"><img src="/images/icon-plus.svg" alt="" /></button>
+              </div>
+              <button class="add-cart"><img src="/images/icon-cart.svg" alt="" />Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

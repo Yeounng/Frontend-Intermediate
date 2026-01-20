@@ -1,0 +1,626 @@
+@import url(/normalizer.css);
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&display=swap");
+
+//primary-color
+$Orange: hsl(26, 100%, 55%);
+$Pale-orange: hsl(25, 100%, 94%);
+
+//neutral-color
+$Very-dark-blue: hsl(220, 13%, 13%);
+$Dark-grayish-blue: hsl(219, 9%, 45%);
+$Grayish-blue: hsl(220, 14%, 75%);
+$Light-grayish-blue: hsl(223, 64%, 98%);
+
+$breakpoints: (
+  desktop: 1440px,
+  desktop-sm: 1024px,
+  tablet: 768px,
+  mobile: 480px,
+);
+
+@mixin responsive($points) {
+  @media screen and (min-width: map-get($breakpoints,$points)) {
+    @content;
+  }
+}
+
+:root {
+  --cart-quantity: ;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  font-family: "Kumbh Sans";
+  font-size: 16px;
+  padding-top: 60px; //header 높이만큼 공간 확보
+  @include responsive(desktop-sm) {
+    padding-top: 0; //header fixed 용 여벽 제거
+  }
+}
+//header
+header {
+  position: fixed;
+  display: flex;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 60px; //header 높이 지정
+  justify-content: center;
+  z-index: 4;
+  @include responsive(desktop-sm) {
+    position: static;
+    height: 100px;
+    margin-bottom: 60px; //main과 header 분리용 여백
+  }
+}
+
+header > nav {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  gap: 15px;
+  align-items: center;
+  overflow: hidden;
+  background-color: white;
+  @include responsive(tablet) {
+    gap: 30px;
+  }
+  @include responsive(desktop-sm) {
+    width: 90%;
+    max-width: 1440px;
+    gap: 60px;
+    border-bottom: 1px solid $Grayish-blue;
+  }
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  visibility: hidden;
+  transition: 0.5s ease-in-out;
+  z-index: 1; //mobile-menu(10) 버튼 최상단 ->gnb-menu(5) -> header(4) -> overlay(1)
+  &.active {
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+  }
+  @include responsive(tablet) {
+    display: none;
+  }
+}
+
+.lightbox {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  z-index: 5;
+  &.active {
+    display: flex;
+  }
+  .lightbox-close {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 15px;
+    border: none;
+    background-color: transparent;
+    filter: brightness(0) saturate(100%) invert(0%) sepia(2%) saturate(2%) hue-rotate(46deg) brightness(96%) contrast(100%);
+    transition: filter 0.3s;
+    &:hover {
+      filter: brightness(0) saturate(100%) invert(49%) sepia(100%) saturate(944%) hue-rotate(347deg) brightness(100%)
+        contrast(102%);
+    }
+  }
+  .product-showcase {
+    width: 500px;
+    height: 100%;
+  }
+}
+
+.mobile-menu {
+  //top: 30px; top 미지정시 flex container align-items 에 의해 정렬
+  border: none;
+  background-color: transparent;
+  z-index: 10;
+  img {
+    display: block;
+    width: 100%;
+  }
+  @include responsive(tablet) {
+    //remove button on tablet++ size
+    display: none;
+  }
+}
+.logo {
+  margin-left: 40px;
+  img {
+    width: 100%;
+    display: block;
+  }
+  @include responsive(tablet) {
+    margin-left: 15px;
+  }
+  @include responsive(desktop-sm) {
+    margin-left: 0;
+  }
+}
+
+.gnb-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 65%;
+  height: 100vh;
+  padding: 70px 25px;
+  transform: translateX(-100%);
+  visibility: hidden;
+  background-color: white;
+  z-index: 5;
+  transition: 0.5s ease-in-out;
+  &.expand {
+    visibility: visible;
+    transform: translateX(0);
+  }
+  .menu-item {
+    margin-bottom: 30px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  @include responsive(tablet) {
+    position: static;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    align-items: center;
+    gap: 15px;
+    background: none;
+    transform: none;
+    visibility: visible;
+    .menu-item {
+      margin-bottom: 0;
+      color: $Very-dark-blue;
+    }
+  }
+  @include responsive(desktop-sm) {
+    align-items: stretch; //align-item이 설정되어있으면 높이를 해제하고 컨텐츠 높이 만큼 계산.
+    z-index: 0;
+    .menu-item {
+      position: relative;
+      display: flex; //개별 항목에 flex적용, 내부 컨텐츠 수직 정렬
+      align-items: center;
+      z-index: 1;
+      &::after {
+        position: absolute;
+        content: "";
+        display: block;
+        left: 0;
+        bottom: 0px;
+        width: 100%;
+        height: 3px;
+        background-color: transparent;
+        transition: background-color 0.3s;
+      }
+      &:hover::after {
+        background-color: $Orange;
+      }
+    }
+  }
+}
+
+.user-area {
+  display: flex;
+  margin-left: auto;
+  gap: 15px;
+  align-items: center;
+  @include responsive(tablet) {
+    width: 125px;
+  }
+}
+
+.user-cart {
+  .nav-add-cart {
+    position: relative;
+    border: none;
+    background-color: transparent;
+    @include responsive(desktop-sm) {
+      width: 35px;
+      height: 35px;
+    }
+    img {
+      display: block;
+      width: 100%;
+    }
+    &.has-item::after {
+      content: var(--cart-quantity, "default");
+      position: absolute;
+      right: 0;
+      top: -5px;
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      background-color: $Orange;
+      font-size: 10px;
+      line-height: 15px;
+      color: white;
+    }
+    &::after {
+      display: none;
+    }
+  }
+  .cart-popup {
+    position: fixed;
+    display: flex;
+    left: 30px;
+    top: 70px;
+    width: 90vw;
+    max-height: 0;
+    padding: 15px;
+    flex-direction: column;
+    transform: translateY(-200px);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px 3px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      max-height 0.2s,
+      0.5s ease-in-out;
+    z-index: 1;
+    @include responsive(tablet) {
+      left: auto;
+      right: 30px;
+      width: 400px;
+      transform: translate(-15px, -200px);
+    }
+    @include responsive(desktop-sm) {
+      position: absolute;
+      transform: translate(-80px, -200px);
+    }
+    @include responsive(desktop) {
+      transform: translate(-100px, -200px);
+    }
+    .popup-upper {
+      padding-bottom: 20px;
+      font-weight: 700;
+      border-bottom: 1px solid $Grayish-blue;
+    }
+    &.active {
+      max-height: 500px;
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      @include responsive(tablet) {
+        transform: translate(-15px, -10px);
+      }
+      @include responsive(desktop-sm) {
+        transform: translate(-80px, 30px);
+      }
+      @include responsive(desktop) {
+        transform: translate(-100px, 30px);
+      }
+    }
+    &.is-empty {
+      .cart-empty {
+        display: none;
+      }
+      .popup-main {
+        display: flex;
+      }
+    }
+    .cart-empty {
+      display: flex;
+      width: 100%;
+      min-height: 100px;
+      align-items: center;
+      .empty {
+        display: block;
+        margin: 0 auto;
+        color: $Dark-grayish-blue;
+        font-weight: 700;
+      }
+    }
+    .popup-main {
+      display: none;
+      width: 100%;
+      margin: 20px 0;
+      align-items: center;
+      gap: 15px;
+      color: $Dark-grayish-blue;
+      .cart-item-thumnail {
+        width: 50px;
+        height: 50px;
+        > img {
+          display: block;
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+      .cart-item-detail {
+        span {
+          display: block;
+        }
+        strong {
+          color: black;
+        }
+      }
+      .discard-item {
+        margin-left: auto;
+        border: 0;
+        background-color: transparent;
+      }
+    }
+  }
+  .checkout {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    border-radius: 8px;
+    background-color: $Orange;
+    font-weight: 700;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: orangered;
+    }
+  }
+}
+
+.user-profile {
+  width: 30px;
+  height: 30px;
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 100%;
+  transition: border-color 0.3s;
+  a > img {
+    display: block;
+    width: 100%;
+  }
+  @include responsive(desktop-sm) {
+    width: 50px;
+    height: 50px;
+  }
+  &:hover {
+    border-color: $Orange;
+  }
+}
+
+//main
+#product-page {
+  display: flex;
+  justify-content: center;
+}
+
+#product-page .container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  @include responsive(tablet) {
+    flex-direction: row;
+  }
+  @include responsive(desktop-sm) {
+    width: 80%;
+    max-width: 1200px;
+    gap: 50px;
+  }
+}
+
+.product-showcase {
+  @include responsive(tablet) {
+    width: 50%;
+  }
+  @include responsive(desktop-sm) {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+  }
+}
+
+.product-swiper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  @include responsive(desktop-sm) {
+    border-radius: 8px;
+  }
+  .swiper-wrapper {
+    display: flex;
+    width: 100%;
+    transform: translateX(0px);
+    transition: 0.3s ease-in-out;
+    .slider-item {
+      width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+      > img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+  .swiper {
+    position: absolute;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: white;
+    cursor: pointer;
+    > img {
+      width: 15px;
+      height: 20px;
+      display: block;
+    }
+  }
+  .swiper-left {
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .swiper-right {
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+.product-gallery {
+  width: 100%;
+  overflow: hidden;
+}
+.gallery-img {
+  display: none;
+  @include responsive(desktop-sm) {
+    display: flex;
+    gap: 15px;
+  }
+  li {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.3s;
+    border: 2px solid;
+    border-color: transparent;
+    cursor: pointer;
+    &.active {
+      border-color: $Orange;
+    }
+    &.active::after {
+      opacity: 0.5;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      opacity: 0;
+      transition: 0.3s;
+    }
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.content-wrapper {
+  padding: 30px;
+  @include responsive(tablet) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    padding: 0 30px;
+  }
+  @include responsive(desktop-sm) {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.product-content {
+  .product-brand {
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: 700;
+    color: $Dark-grayish-blue;
+  }
+  .product-title {
+    margin: 15px 0 30px;
+  }
+  .product-desciption {
+    color: $Dark-grayish-blue;
+  }
+}
+
+.product-price {
+  display: flex;
+  margin-bottom: 30px;
+  align-items: center;
+  gap: 15px;
+  font-weight: 700;
+  .product-discount {
+    padding: 3px 6px;
+    border-radius: 4px;
+    background-color: black;
+    text-align: center;
+    color: white;
+  }
+  .product-original-price {
+    margin-left: auto;
+    text-decoration: line-through;
+    color: $Dark-grayish-blue;
+  }
+}
+
+.product-purchase {
+  @include responsive(desktop-sm) {
+    display: flex;
+    gap: 15px;
+  }
+}
+
+.product-quantity {
+  width: 100%;
+  height: 50px;
+  padding: 0 30px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  background-color: $Light-grayish-blue;
+  font-weight: 700;
+  button {
+    border: none;
+    background-color: transparent;
+  }
+  button.subtract {
+    margin-bottom: 8px;
+  }
+  @include responsive(desktop-sm) {
+    padding: 0 15px;
+  }
+}
+
+button.add-cart {
+  width: 100%;
+  height: 50px;
+  padding: 0 30px;
+  border: 0;
+  border-radius: 8px;
+  background-color: $Orange;
+  font-weight: 700;
+  transition: background-color 0.3s;
+  img {
+    margin-right: 15px;
+    vertical-align: top;
+    background-color: transparent;
+    filter: brightness(0) saturate(100%) invert(0%) sepia(2%) saturate(2%) hue-rotate(46deg) brightness(96%) contrast(100%);
+  }
+  @include responsive(desktop-sm) {
+    padding: 0 15px;
+  }
+  &:hover {
+    background-color: orangered;
+  }
+}
