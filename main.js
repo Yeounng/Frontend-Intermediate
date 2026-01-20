@@ -16,7 +16,6 @@ const cartButton = document.querySelector(".nav-add-cart");
 const cartPopup = document.getElementById("cart-popup");
 const itemName = document.querySelector(".item-name");
 cartButton.addEventListener("click", (e) => {
-  updateTotal();
   const isExpanded = e.currentTarget.getAttribute("aria-expanded") === "true";
   e.currentTarget.setAttribute("aria-expanded", !isExpanded);
   cartPopup.classList.toggle("active");
