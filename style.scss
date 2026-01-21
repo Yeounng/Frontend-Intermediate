@@ -312,7 +312,7 @@ header > nav {
         transform: translate(-100px, 30px);
       }
     }
-    &.is-empty {
+    &.has-item {
       .cart-empty {
         display: none;
       }

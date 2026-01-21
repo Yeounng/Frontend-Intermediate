@@ -322,10 +322,10 @@ header > nav {
     transform: translate(-100px, 30px);
   }
 }
-.user-cart .cart-popup.is-empty .cart-empty {
+.user-cart .cart-popup.has-item .cart-empty {
   display: none;
 }
-.user-cart .cart-popup.is-empty .popup-main {
+.user-cart .cart-popup.has-item .popup-main {
   display: flex;
 }
 .user-cart .cart-popup .cart-empty {

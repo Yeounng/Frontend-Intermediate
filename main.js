@@ -21,30 +21,40 @@ cartButton.addEventListener("click", (e) => {
   cartPopup.classList.toggle("active");
 });
 
+function ariaHiddenState() {
+  const emptyMsg = document.querySelector(".cart-empty");
+  const isEmpty = emptyMsg.getAttribute("aria-hidden") === "false"; //기본상태 aria 값
+  emptyMsg.setAttribute("aria-hidden", isEmpty); //숨겨지지 않은 상태 false가 맞으므로 isEmpty가 true 이기 때문에 !isEmpty가 아니다
+  const itemCart = document.querySelector(".popup-main");
+  const hasItem = itemCart.getAttribute("aria-hidden") === "true";
+  itemCart.setAttribute("aria-hidden", !hasItem);
+}
+
 const deleteCart = document.querySelector(".discard-item");
 
 deleteCart.addEventListener("click", (e) => {
-  const emptyMsg = document.querySelector(".cart-empty");
-  const isEmpty = emptyMsg.getAttribute("aria-hidden") === "true";
-  emptyMsg.setAttribute("aria-hidden", !isEmpty);
   itemName.textContent = "";
-  cartPopup.classList.remove("is-empty");
-  count = 0; // 카트를 비울때 수량값을 0으로 초기화
+  cartPopup.classList.remove("has-item");
   cartButton.classList.remove("has-item");
+  count = 0; // 카트를 비울때 수량값을 0으로 초기화
   cartButton.style.setProperty("--cart-quantity", `"${count}"`);
+  ariaHiddenState();
 });
 
 //popup cart end
 
 //add cart start
 const addCart = document.querySelector(".add-cart");
+
 addCart.addEventListener("click", () => {
   const productName = document.querySelector(".product-title").dataset.productName;
   itemName.textContent = productName;
-  cartPopup.classList.add("is-empty");
+  cartPopup.classList.add("has-item");
   cartButton.classList.add("has-item");
   updateTotal();
+  ariaHiddenState();
 });
+
 const plus = document.querySelector(".add");
 const subtract = document.querySelector(".subtract");
 const quantityDisplay = document.querySelector("#quantity");
