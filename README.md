@@ -1,4 +1,6 @@
-# Frontend Thinking Log
+# Frontend Mentor - Ecommerce Product Page
+
+### Frontend Thinking Log
 
 > 날짜: 2026-01-21  
 > 작업 유형: (기능 추가 / UI 개선 / 리팩터링)
@@ -9,8 +11,8 @@
 
 ### Links
 
-- Solution URL: (https://www.frontendmentor.io/solutions/responsive-e-commerce-page-XoAv9tEmg_)
-- Live Site URL: (https://app.netlify.com/projects/jade-dolphin-4cf5ca/overview)
+- [Solution URL](https://www.frontendmentor.io/solutions/responsive-e-commerce-page-XoAv9tEmg_)
+- [Live Site URL](https://app.netlify.com/projects/jade-dolphin-4cf5ca/overview)
 
 ## 1. 프로젝트 진행 과정에서 마주친 문제
 
@@ -153,7 +155,7 @@ align-item:stretch를 명시해 높이값을 되찾고 li(개별항목)에 flex�
 
 ## 8. 이번 작업을 통해 배운점, 활용한 리소스나 유용한 링크 AI chat 등
 
-[Useful Docs](./swiper-carousel-guide.md)
+[Useful Docs - Swiper Guide](./swiper-carousel-guide.md)
 
 ### 예시
 
